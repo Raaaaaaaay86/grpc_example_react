@@ -19,7 +19,7 @@ function App() {
   return (
     <React.Fragment>
       <h1>gRPC React Example</h1>
-      <button onClick={sendRpc}>Send Request</button>
+      <button onClick={sendRpc}>Send gRPC Request to Envoy proxy server</button>
     </React.Fragment>
   );
 }
