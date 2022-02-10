@@ -1,0 +1,1 @@
+protoc Greeting.proto --js_out=import_style=commonjs:./services --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./services

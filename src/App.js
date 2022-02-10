@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import {GreetingRequest, GreetingResponse} from "./proto/services/Greeting_pb";
+import {MyServiceClient} from "./proto/services/Greeting_grpc_web_pb";
 
 function App() {
+  
+  const sendRpc = () => {
+    const myService = new MyServiceClient('http://127.0.0.1:8081');
+
+    const request = new GreetingRequest();
+    request.setName("SuperUsername");
+
+    myService.greeting(request, {}, (err, response) => {
+      alert(response);
+    });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <h1>gRPC React Example</h1>
+      <button onClick={sendRpc}>Send Request</button>
+    </React.Fragment>
   );
 }
 
